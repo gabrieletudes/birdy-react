@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import {Route, Switch, Redirect, BrowserRouter} from 'react-router-dom';
+import firebase from 'firebase';
+import {config} from './configfib';
 import SignInPage from './pages/SignInPage'
 import SignUpPage from './pages/SignUpPage'
 import Home from './pages/Home'
@@ -10,14 +12,32 @@ import Users from './pages/Users'
 import AppFooter from './components/Footer'
 
 class App extends Component {
+
+  state = {
+    user: null
+  }
+
+  componentDidMount() {
+    firebase.initializeApp(config);
+    this.authListener();
+  }
+
+  authListener() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({user});
+        localStorage.setItem('user', user.uid);
+      } else {
+        this.setState({user: null});
+        localStorage.removeItem('user');
+        }
+      }
+    )
+  }
+
   render() {
-    return (
-      <div className="App">
-        <header className="header">
-          <h1 className="header__title">Birdy</h1>
-        </header>
-      </div>
-    );
+      const {user} = this.state
+      if(user === null) {
         return (
           <BrowserRouter>
             <Switch>
@@ -27,6 +47,7 @@ class App extends Component {
             </Switch>
           </BrowserRouter>
           )
+      }
       return (
           <BrowserRouter>
             <React.Fragment>
