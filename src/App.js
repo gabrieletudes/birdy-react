@@ -9,6 +9,7 @@ import Home from './pages/Home'
 import Encyclopedia from './pages/Encyclopedia'
 import Captures from './pages/Captures'
 import Users from './pages/Users'
+import AppHeader from './components/Header'
 import AppFooter from './components/Footer'
 
 class App extends Component {
@@ -51,6 +52,7 @@ class App extends Component {
       return (
           <BrowserRouter>
             <React.Fragment>
+              <AppHeader />
                 <Switch>
                   <Route path="/" exact component={Home}/>
                   <Route path="/encyclopedie" component={Encyclopedia}/>
