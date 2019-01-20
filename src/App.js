@@ -53,9 +53,9 @@ class App extends Component {
             <React.Fragment>
                 <Switch>
                   <Route path="/" exact component={Home}/>
-                  <Route path="/encyclopedie" exact component={Encyclopedia}/>
-                  <Route path="/captures" exact component={Captures}/>
-                  <Route path="/utilisateurs" exact component={Users}/>
+                  <Route path="/encyclopedie" component={Encyclopedia}/>
+                  <Route path="/captures" component={Captures}/>
+                  <Route path="/utilisateurs" component={Users}/>
                   <Redirect to="/"/>
                 </Switch>
               <AppFooter />
