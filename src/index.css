@@ -165,10 +165,6 @@ input {
 
 .round-image__element {
   display: flex;
-  /*min-width: 102px;
-  min-height: 102px;
-  background-color: lightsalmon;
-  border-radius: 100%;*/
 }
 
 /*Helpers*/
