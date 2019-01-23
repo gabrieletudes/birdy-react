@@ -21,6 +21,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+.custom-audio-small {
+  width: 260px;
+  height: 46px;
+}
+
 input {
   font-size: 1.6rem;
 }
@@ -35,6 +40,10 @@ input {
 }
 
 /*End color helpers*/
+
+.text-bold {
+  font-weight: bold;
+}
 
 .header {
   position: fixed;
@@ -191,6 +200,9 @@ input {
 .h-margin-bottom--medium {
   margin-bottom: 2.4rem;
 }
+.h-margin-right--tiny {
+  margin-right: .8rem;
+}
 
 .app-nav {
   display: flex;
@@ -221,4 +233,22 @@ input {
 
 .app-nav__link svg{
   margin-bottom: 0.4rem;
+}
+
+/*Liste elements*/
+.list-data {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-left: 10px;
+    font-size: 1.4rem;
+    box-shadow: 1px 1px 3px rgba(117, 117, 117, 0.5);
+    padding: 1.5rem;
+}
+
+.list-data__element {
+    list-style: none;
+    margin-right: .8rem;
+    min-width: 10rem;
+    margin-bottom: .8rem;
 }
