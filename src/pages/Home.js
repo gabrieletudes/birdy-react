@@ -99,7 +99,7 @@ class Home extends Component {
 
   startNewSession () {
      const {started, method} = this.state.capture_session;
-     const {age, fat, gender, latin_name, reprise, ring_number, session_id, weight, wings_length} = this.state.newcapture;
+     const {age, fat, gender, latin_name, reprise, ring_number, weight, wings_length} = this.state.newcapture;
      if (started !== true) {
        return (
         <React.Fragment>
