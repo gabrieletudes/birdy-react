@@ -53,13 +53,15 @@ class App extends Component {
           <BrowserRouter>
             <React.Fragment>
               <AppHeader />
-                <Switch>
-                  <Route path="/" exact component={Home}/>
-                  <Route path="/encyclopedie" component={Encyclopedia}/>
-                  <Route path="/captures" component={Captures}/>
-                  <Route path="/utilisateurs" component={Users}/>
-                  <Redirect to="/"/>
-                </Switch>
+                <main className="app-main">
+                  <Switch>
+                    <Route exact path="/" component={Home}/>
+                    <Route path="/encyclopedie" component={Encyclopedia}/>
+                    <Route path="/captures" component={Captures}/>
+                    <Route path="/utilisateurs" component={Users}/>
+                    <Redirect to="/"/>
+                  </Switch>
+                </main>
               <AppFooter />
             </React.Fragment>
           </BrowserRouter>
