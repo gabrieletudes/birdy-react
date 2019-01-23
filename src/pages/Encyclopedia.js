@@ -17,7 +17,6 @@ class Encyclopedia extends Component {
 
   renderEncyclopedia() {
     const {encyclopedia} = this.state;
-    // const values = Object.values(encyclopedia)
     if (encyclopedia !== null) {
       const values = Object.values(encyclopedia);
       console.log(values);
