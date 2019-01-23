@@ -19,7 +19,6 @@ class Encyclopedia extends Component {
     const {encyclopedia} = this.state;
     if (encyclopedia !== null) {
       const values = Object.values(encyclopedia);
-      console.log(values);
       return (
         <React.Fragment>
           {
