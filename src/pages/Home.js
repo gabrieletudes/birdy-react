@@ -97,19 +97,6 @@ class Home extends Component {
     )
   };
 
-  handleEndCaptureSession = () => {
-    const showmodal =
-    newcapture.age = ''
-    newcapture.fat = ''
-    newcapture.gender = ''
-    newcapture.latin_name = ''
-    newcapture.reprise =  false
-    newcapture.ring_number = ''
-    newcapture.weight = ''
-    newcapture.wings_length = ''
-    this.setState({newcapture})
-  }
-
   startNewSession () {
      const {started, method} = this.state.capture_session;
      const {age, fat, gender, latin_name, reprise, ring_number, session_id, weight, wings_length} = this.state.newcapture;
