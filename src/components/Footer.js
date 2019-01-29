@@ -14,9 +14,9 @@ class AppFooter extends Component {
           <FontAwesomeIcon icon="feather-alt" size="2x" />
           Encyclopedie
         </NavLink>
-        <NavLink to="/captures" className="app-nav__link" activeClassName="app-nav__link--selected">
-          <FontAwesomeIcon icon="dove" size="2x" />
-          Captures
+        <NavLink to="/sites-de-baguage" className="app-nav__link" activeClassName="app-nav__link--selected">
+          <FontAwesomeIcon icon="map" size="2x" />
+          Sites
         </NavLink>
         <NavLink to="/utilisateurs" className="app-nav__link" activeClassName="app-nav__link--selected">
           <FontAwesomeIcon icon="users" size="2x" />

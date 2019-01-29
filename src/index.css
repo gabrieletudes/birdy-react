@@ -252,3 +252,9 @@ input {
     min-width: 10rem;
     margin-bottom: .8rem;
 }
+
+
+/*Map*/
+.birdy-map{
+  min-height: 42rem;
+}
