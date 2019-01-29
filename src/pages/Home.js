@@ -29,15 +29,37 @@ class Home extends Component {
   };
 
   componentDidMount() {
+    // Get the single captures
     const capturer = firebase.database().ref('single_captures');
 
     capturer.on('value', snap => {
-        this.setState({
-            single_captures: snap.val()
-        })
+      this.setState({
+        single_captures: snap.val()
+      })
+    })
+
+    this.setPosition()
+  }
+
+  setPosition = () => {
+    //store in const the capture_session state
+    const capture_session = {...this.state.capture_session};
+
+    // Get the current position
+    navigator.geolocation.getCurrentPosition(position => {
+      // Add the current location to the session lat and lng
+      capture_session.location.lat = this.roundToTwo(position.coords.latitude)
+      capture_session.location.lng = this.roundToTwo(position.coords.longitude)
+
+      // Set the modified state to the capture_session
+      this.setState({capture_session})
     })
   }
 
+  // round numbers to two decimals
+  roundToTwo = (num) => {
+    return +(Math.round(num + "e+2")  + "e-2");
+  }
 
   handleCaptureSession = ({currentTarget: input}) => {
     const capture_session = {...this.state.capture_session};
@@ -47,13 +69,13 @@ class Home extends Component {
 
   handleStartCaptureSession = e => {
     e.preventDefault();
+
     const {location, method, uid} = this.state.capture_session;
     //store the curren timestamp
     const captureTime = Date.now();
     //use it as entry point
     const session = firebase.database().ref('capture_sessions/' + captureTime);
-    session.set({
-      location, method, uid
+    session.set({location, method, uid
     })
     session.once('value').then(snapshot => {
       // create a copy of the state elements
@@ -68,7 +90,6 @@ class Home extends Component {
       this.setState({newcapture});
     })
   };
-
 
   handleAdd = ({currentTarget: input}) => {
     const newcapture = {...this.state.newcapture};
@@ -103,7 +124,7 @@ class Home extends Component {
      if (started !== true) {
        return (
         <React.Fragment>
-           <h1 className="" >Envie de commencer une nouvelle capture?</h1>
+           <h1 className="">Envie de commencer une nouvelle capture?</h1>
            <form onSubmit={this.handleStartCaptureSession} action="" className="login-form form h-margin-top--big">
              <Input type="text"
                name="method"
