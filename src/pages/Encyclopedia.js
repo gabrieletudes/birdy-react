@@ -29,7 +29,7 @@ class Encyclopedia extends Component {
                     <img src={record.picture} alt="" width="250" height="250" />
                   </li>
                   <li className="list-data__element">
-                      <audio className="custom-audio-small" controls src={record.song}> Your browser does not support the <code>audio</code> element.
+                      <audio className="custom-audio-small" preload="metadata" controls src={record.song}> Your browser does not support the <code>audio</code> element.
                       </audio>
                   </li>
                   <li className="list-data__element">
