@@ -9,6 +9,7 @@ import Home from './pages/Home'
 import Encyclopedia from './pages/Encyclopedia'
 import Captures from './pages/Captures'
 import Users from './pages/Users'
+import RingingSites from './pages/RingingSites'
 import AppHeader from './components/Header'
 import AppFooter from './components/Footer'
 
@@ -56,6 +57,7 @@ class App extends Component {
                 <main className="app-main">
                   <Switch>
                     <Route exact path="/" component={Home}/>
+                    <Route exact path="/sites-de-baguage" component={RingingSites}/>
                     <Route path="/encyclopedie" component={Encyclopedia}/>
                     <Route path="/captures" component={Captures}/>
                     <Route path="/utilisateurs" component={Users}/>
