@@ -26,7 +26,7 @@ class Zones extends Component {
   }
 
   renderMap = () => {
-    this.loadScript("https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap")
+    this.loadScript("https://maps.googleapis.com/maps/api/js?key=KEY_API&callback=initMap")
   }
 
   loadScript = (url) => {
@@ -50,9 +50,9 @@ class Zones extends Component {
   }
 
   initMap = () => {
-  const { capture_sessions } = this.state
+    const { capture_sessions } = this.state
 
-  const allcaptures = Object.values(capture_sessions);
+    const allcaptures = Object.values(capture_sessions);
     //generate map
     var map = new window.google.maps.Map(
       document.getElementById('map'), {
@@ -73,19 +73,19 @@ class Zones extends Component {
     /*var markerCluster = new MarkerClusterer(map, markers,
       {imagePath: '/map-images/m'})*/
 
-      for (var ringingsite in allcaptures) {
-        // Add the circle for this city to the map.
-        var siteCircle = new window.google.maps.Circle({
-          strokeColor: '#3b5f77',
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: '#3b5f77',
-          fillOpacity: 0.35,
-          map: map,
-          center: allcaptures[ringingsite].location,
-          radius: this.state.lat * 2
-        });
-      }
+    for (var ringingsite in allcaptures) {
+      // Add the circle for this ringingsite to the map.
+      var siteCircle = new window.google.maps.Circle({
+        strokeColor: '#3b5f77',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#3b5f77',
+        fillOpacity: 0.35,
+        map: map,
+        center: allcaptures[ringingsite].location,
+        radius: this.state.lat * 2
+      });
+    }
   }
 
   render() {
