@@ -23,6 +23,7 @@ class Home extends Component {
       reprise: false,
       ring_number: '',
       session_id: '',
+      uid: firebase.auth().currentUser.uid,
       weight: '',
       wings_length: ''
     },
@@ -99,10 +100,10 @@ class Home extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const {age, fat, gender, latin_name, reprise, ring_number, session_id, weight, wings_length} = this.state.newcapture;
+    const {age, fat, gender, latin_name, reprise, ring_number, session_id, uid, weight, wings_length} = this.state.newcapture;
     const capturer = firebase.database().ref('single_captures');
     capturer.push({
-      age, fat, gender, latin_name, reprise, ring_number, session_id, weight, wings_length
+      age, fat, gender, latin_name, reprise, ring_number, session_id, uid, weight, wings_length
     }).then(() => {
       const newcapture = {...this.state.newcapture};
       newcapture.age = ''
