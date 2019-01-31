@@ -4,12 +4,15 @@ import firebase from 'firebase'
 
 class Zones extends Component {
   state = {
-    lat: 52.61,
-    lng: 5.5,
+    currentuser: {
+      uid: firebase.auth().currentUser.uid,
+      lat: null,
+      lng: null,
+    },
     zoom: 15,
     capture_sessions: []
-
   }
+
   componentDidMount(){
     this.getAllCaptures()
     window.initMap = this.initMap
@@ -17,6 +20,29 @@ class Zones extends Component {
 
   componentWillUnmount(){
     this.removeGoogleMapAPI();
+  }
+
+  setUserPosition = () => {
+    //store in const the capture_session state
+    const currentuser = {...this.state.currentuser};
+
+    // Get the current position
+    navigator.geolocation.getCurrentPosition(position => {
+      // Add the current location to the user lat and lng
+      currentuser.lat = this.roundToTwo(position.coords.latitude)
+      currentuser.lng = this.roundToTwo(position.coords.longitude)
+
+      // Set the modified state for the currenuser
+      this.setState({currentuser})
+    },()=>{
+      console.error('There’s no position shared')
+    }, { enableHighAccuracy: false, maximumAge: 60000, timeout: 27000
+})
+  }
+
+  // round numbers to two decimals
+  roundToTwo = (num) => {
+    return +(Math.round(num + "e+2")  + "e-2");
   }
 
   removeGoogleMapAPI(){
@@ -42,21 +68,22 @@ class Zones extends Component {
     // Get the capture sessions
     const capture_sessions = firebase.database().ref('capture_sessions');
 
-    capture_sessions.on('value', snapshot => {
+    capture_sessions.once('value', snapshot => {
       this.setState({
         capture_sessions: snapshot.val()
       }, this.renderMap())
     })
+    this.setUserPosition()
   }
 
   initMap = () => {
-    const { capture_sessions } = this.state
+    const { capture_sessions, currentuser } = this.state
 
     const allcaptures = Object.values(capture_sessions);
     //generate map
     var map = new window.google.maps.Map(
       document.getElementById('map'), {
-        center: {lat: this.state.lat, lng: this.state.lng},
+        center: {lat: currentuser.lat, lng: currentuser.lng},
         zoom: 8
       })
 
