@@ -50,10 +50,10 @@ class Users extends Component {
                     <span className="text-bold h-margin-right--tiny">Nom et Prenom</span>{user.information.full_name}
                   </li>
                   <li className="list-data__element">
-                    <span className="text-bold h-margin-right--tiny">Email</span>{user.information.email}
+                    <span className="text-bold h-margin-right--tiny">Isn</span>{user.information.isn_id}
                   </li>
                   <li className="list-data__element">
-                    <span className="text-bold h-margin-right--tiny">captures amount</span>{user.capturesamount}
+                    <span className="text-bold h-margin-right--tiny">Nombre de captures</span>{user.capturesamount}
                   </li>
                 </ul>
               </div>
