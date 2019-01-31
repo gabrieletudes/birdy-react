@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import firebase from 'firebase'
-//import MarkerClusterer from '@google/markerclustererplus'
+import MarkerClusterer from '@google/markerclustererplus'
 
 class Zones extends Component {
   state = {
     currentuser: {
       uid: firebase.auth().currentUser.uid,
-      lat: null,
-      lng: null,
+      lat: 50.2,
+      lng: 6.52,
     },
     zoom: 15,
     capture_sessions: []
@@ -15,6 +15,7 @@ class Zones extends Component {
 
   componentDidMount(){
     this.getAllCaptures()
+    this.setUserPosition()
     window.initMap = this.initMap
   }
 
@@ -36,8 +37,7 @@ class Zones extends Component {
       this.setState({currentuser})
     },()=>{
       console.error('There’s no position shared')
-    }, { enableHighAccuracy: false, maximumAge: 60000, timeout: 27000
-})
+    }, { maximumAge: 60000, timeout: 27000})
   }
 
   // round numbers to two decimals
@@ -56,8 +56,8 @@ class Zones extends Component {
   }
 
   loadScript = (url) => {
-    var index = window.document.getElementsByTagName("script")[0]
-    var script = window.document.createElement("script")
+    let index = window.document.getElementsByTagName("script")[0]
+    let script = window.document.createElement("script")
     script.src = url
     script.async = true
     script.defer = true
@@ -65,31 +65,44 @@ class Zones extends Component {
   }
 
   getAllCaptures = () => {
+    const allcaptures = {...this.state.capture_sessions}
     // Get the capture sessions
     const capture_sessions = firebase.database().ref('capture_sessions');
+    const single_captures = firebase.database().ref('single_captures');
 
-    capture_sessions.once('value', snapshot => {
-      this.setState({
-        capture_sessions: snapshot.val()
-      }, this.renderMap())
+    // Retrives the single captures
+    single_captures.on('child_added', (capture) => {
+      // store the capture data
+      let thecapture = capture.val();
+      // add capture location property to the allcaptures array at given position
+      allcaptures[capture.key] = {location:null}
+      // Retrives all the location of a given capture
+      capture_sessions.orderByKey().equalTo(thecapture.session_id).once('child_added', (capturesession) => {
+        // store the capturesession data
+        let captureloc = capturesession.val()
+        // add the capture location to allcaptures array
+        allcaptures[capture.key].location = captureloc.location
+        // Affect the value to the state
+        this.setState({capture_sessions: allcaptures}, this.renderMap())
+      })
     })
-    this.setUserPosition()
   }
 
   initMap = () => {
+    // destructure state
     const { capture_sessions, currentuser } = this.state
 
     const allcaptures = Object.values(capture_sessions);
     //generate map
-    var map = new window.google.maps.Map(
+    let map = new window.google.maps.Map(
       document.getElementById('map'), {
         center: {lat: currentuser.lat, lng: currentuser.lng},
         zoom: 8
       })
 
     //loop generate marker
-    allcaptures.map(result => {
-      var marker = new window.google.maps.Marker({
+    const markers = allcaptures.map(result => {
+      let marker = new window.google.maps.Marker({
         position: {lat: result.location.lat, lng: result.location.lng},
         map: map
       })
@@ -97,22 +110,7 @@ class Zones extends Component {
     })
 
     // Add a marker clusterer to manage the markers.
-    /*var markerCluster = new MarkerClusterer(map, markers,
-      {imagePath: '/map-images/m'})*/
-
-    for (var ringingsite in allcaptures) {
-      // Add the circle for this ringingsite to the map.
-      var siteCircle = new window.google.maps.Circle({
-        strokeColor: '#3b5f77',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#3b5f77',
-        fillOpacity: 0.35,
-        map: map,
-        center: allcaptures[ringingsite].location,
-        radius: this.state.lat * 2
-      });
-    }
+    new MarkerClusterer(map, markers,{imagePath: '/map-images/m'})
   }
 
   render() {
