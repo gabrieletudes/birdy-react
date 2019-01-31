@@ -17,7 +17,7 @@ class Users extends Component {
     const allusers = {...this.state.users}
     // define the Endpoints on the DB
     const theusers = firebase.database().ref('users');
-    const capture_sessions = firebase.database().ref('capture_sessions');
+    const single_captures = firebase.database().ref('single_captures');
     // Retrives all the users
     theusers.on('child_added', (theusers) => {
       // store the user key
@@ -27,11 +27,11 @@ class Users extends Component {
       // affect the the user information to
       allusers[userId].information = theusers.val()
       // Retrives all the captures made by an user
-      capture_sessions.orderByChild("uid").equalTo(userId).once('value', (capturesessions) => {
-        // Add the amount of captures made by an user
-        allusers[userId].capturesamount = capturesessions.val() ? Object.values(capturesessions.val()).length : 0
-        //Add it to the state
-        this.setState({users: allusers})
+      single_captures.orderByChild("uid").equalTo(userId).once('value', (singlecaptures) => {
+      // Add the amount of captures made by an user
+      allusers[userId].capturesamount = singlecaptures.val() ? Object.values(singlecaptures.val()).length : 0
+      //Add it to the state
+      this.setState({users: allusers})
       })
     })
   }
