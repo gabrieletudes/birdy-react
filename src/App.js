@@ -7,6 +7,7 @@ import SignInPage from './pages/SignInPage'
 import SignUpPage from './pages/SignUpPage'
 import Home from './pages/Home'
 import Encyclopedia from './pages/Encyclopedia'
+import SingleBird from './pages/SingleBird'
 import Captures from './pages/Captures'
 import Users from './pages/Users'
 import RingingSites from './pages/RingingSites'
@@ -55,10 +56,11 @@ class App extends Component {
             <React.Fragment>
               <AppHeader />
                 <main className="app-main">
-                  <Switch>
+                  <Switch location={this.props.location}>
                     <Route exact path="/" component={Home}/>
                     <Route exact path="/sites-de-baguage" component={RingingSites}/>
-                    <Route path="/encyclopedie" component={Encyclopedia}/>
+                    <Route exact path="/encyclopedie" component={Encyclopedia}/>
+                    <Route path='/encyclopedie/:birdId' component={SingleBird} />
                     <Route path="/captures" component={Captures}/>
                     <Route path="/utilisateurs" component={Users}/>
                     <Redirect to="/"/>

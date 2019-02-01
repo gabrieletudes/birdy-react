@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom'
 import firebase from 'firebase'
 
 class Encyclopedia extends Component {
@@ -25,42 +26,23 @@ class Encyclopedia extends Component {
             values.map((record, key) =>
               <div key={key}>
                 <ul className="list-data">
-                  <li className="list-data__element">
-                    <img src={record.picture} alt="" width="250" height="250" />
+                  <li className="list-data__element list-data__element--no-margin h-full-width h-centered">
+                    <NavLink className="" to={'/encyclopedie/'+ key} key={key}>
+                      <img src={record.picture} alt={record.common_name} width="auto" height="250" />
+                    </NavLink>
                   </li>
                   <li className="list-data__element">
-                      <audio className="custom-audio-small" preload="metadata" controls src={record.song}> Your browser does not support the <code>audio</code> element.
-                      </audio>
-                  </li>
-                  <li className="list-data__element">
-                    <span className="text-bold h-margin-right--tiny">Nom commun</span>{record.common_name}
+                    <h2>
+                      <NavLink className="" to={'/encyclopedie/'+ key} key={key}>
+                        {record.common_name}
+                      </NavLink>
+                    </h2>
                   </li>
                   <li className="list-data__element">
                     <span className="text-bold h-margin-right--tiny">Nom Latin</span>{record.latin_name}
                   </li>
                   <li className="list-data__element">
                     <span className="text-bold h-margin-right--tiny">Famille</span>{record.family}
-                  </li>
-                  <li className="list-data__element">
-                    <span className="text-bold h-margin-right--tiny">Type de vol</span>{record.flight_type}
-                  </li>
-                  <li className="list-data__element">
-                    <span className="text-bold h-margin-right--tiny">Taille</span>{record.height}
-                  </li>
-                  <li className="list-data__element">
-                    <span className="text-bold h-margin-right--tiny">Durée de vie</span>{record.lifetime}
-                  </li>
-                  <li className="list-data__element">
-                    <span className="text-bold h-margin-right--tiny">lat</span>{record.distribution.lat}
-                  </li>
-                  <li className="list-data__element">
-                    <span className="text-bold h-margin-right--tiny">lng</span>{record.distribution.lng}
-                  </li>
-                  <li className="list-data__element">
-                    <span className="text-bold h-margin-right--tiny">Alimentation</span>{record.food}
-                  </li>
-                  <li className="list-data__element">
-                    <span className="text-bold h-margin-right--tiny">Poids</span>{record.weight}
                   </li>
                   <li className="list-data__element">
                     <span className="text-bold h-margin-right--tiny">Envergure</span>{record.wingspan}
@@ -70,9 +52,6 @@ class Encyclopedia extends Component {
                   </li>
                   <li className="list-data__element">
                     <span className="text-bold h-margin-right--tiny">Lieux de nidifications</span>{record.nesting_spots}
-                  </li>
-                  <li className="list-data__element">
-                    <span className="text-bold h-margin-right--tiny">Description</span>{record.description}
                   </li>
                 </ul>
               </div>
