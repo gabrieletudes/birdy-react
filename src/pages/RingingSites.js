@@ -14,6 +14,7 @@ class Zones extends Component {
   }
 
   componentDidMount(){
+    window.initMap = this.initMap
     this.getAllCaptures()
     this.setUserPosition()
   }
@@ -52,7 +53,6 @@ class Zones extends Component {
 
   renderMap = () => {
     this.loadScript("https://maps.googleapis.com/maps/api/js?key=KEY_API&callback=initMap")
-    window.initMap = this.initMap
   }
 
   loadScript = (url) => {
