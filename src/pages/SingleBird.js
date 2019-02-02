@@ -26,7 +26,7 @@ class SingleBird extends Component {
             values.map((record, key) =>
               <div key={key}>
                 <ul className="list-data">
-                  <li className="list-data__element">
+                  <li className="list-data__element list-data__element--no-margin h-full-width h-centered">
                     <img src={record.picture} alt="" width="250" height="250" />
                   </li>
                   <li className="list-data__element">
