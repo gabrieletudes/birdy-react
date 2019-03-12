@@ -42,7 +42,7 @@ class App extends Component {
       const {user} = this.state
       if(user === null) {
         return (
-          <BrowserRouter>
+          <BrowserRouter basename="/birdy-react">
             <Switch>
               <Route path="/" exact component={SignInPage}/>
               <Route path="/signup" component={SignUpPage}/>
@@ -52,7 +52,7 @@ class App extends Component {
           )
       }
       return (
-          <BrowserRouter>
+          <BrowserRouter basename="/birdy-react">
             <React.Fragment>
               <AppHeader />
                 <main className="app-main">
@@ -61,7 +61,7 @@ class App extends Component {
                     <Route exact path="/sites-de-baguage" component={RingingSites}/>
                     <Route exact path="/encyclopedie" component={Encyclopedia}/>
                     <Route path='/encyclopedie/:birdId' component={SingleBird} />
-                    <Route path="/captures" component={Captures}/>
+                    <Route path="/mescaptures" component={Captures}/>
                     <Route path="/utilisateurs" component={Users}/>
                     <Redirect to="/"/>
                   </Switch>
