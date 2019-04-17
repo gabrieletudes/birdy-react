@@ -61,7 +61,7 @@ class App extends Component {
                     <Route exact path="/sites-de-baguage" component={RingingSites}/>
                     <Route exact path="/encyclopedie" component={Encyclopedia}/>
                     <Route path='/encyclopedie/:birdId' component={SingleBird} />
-                    <Route path="/mescaptures" component={Captures}/>
+                    <Route exact path="/mescaptures" component={Captures}/>
                     <Route path="/utilisateurs" component={Users}/>
                     <Redirect to="/"/>
                   </Switch>

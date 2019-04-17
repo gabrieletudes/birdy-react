@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom'
 import firebase from 'firebase';
 
 class Captures extends Component {
   state = {
     captures: null,
+    uid: firebase.auth().currentUser.uid
   }
 
   componentDidMount(){
+    const userId = this.state.uid;
     // Endpoint on the DB
     const single_captures = firebase.database().ref('single_captures');
 
-    single_captures.on('value', single_captures => {
+    single_captures.orderByChild("uid").equalTo(userId).on('value', single_captures => {
       this.setState({captures:  single_captures.val()})
     });
   }
@@ -18,40 +21,44 @@ class Captures extends Component {
   renderCaptures() {
     const {captures} = this.state;
     if (captures !== null) {
-      const values = Object.values(captures);
+      const keys = Object.keys(captures);
       return (
         <React.Fragment>
           {
-            values.map((capture, key) =>
+            keys.map((key, capture) =>
               <div key={key}>
-                <h2>{capture.latin_name}</h2>
                 <ul className="list-data">
                   <li className="list-data__element">
-                    <span className="text-bold h-margin-right--tiny">Âge</span>{capture.age}</li>
+                      <h2>{captures[key].latin_name}</h2>
+                  </li>
                   <li className="list-data__element">
-                    <span className="text-bold h-margin-right--tiny">Sex</span>{capture.gender}</li>
+                    <span className="text-bold h-margin-right--tiny">Âge</span>{captures[key].age}</li>
                   <li className="list-data__element">
-                    <span className="text-bold h-margin-right--tiny">Reprise</span>{capture.reprise}</li>
+                    <span className="text-bold h-margin-right--tiny">Sex</span>{captures[key].gender}</li>
                   <li className="list-data__element">
-                    <span className="text-bold h-margin-right--tiny">Numéro de bague</span>{capture.ring_number}</li>
+                    <span className="text-bold h-margin-right--tiny">Reprise</span>{captures[key].reprise}</li>
                   <li className="list-data__element">
-                    <span className="text-bold h-margin-right--tiny">Poids</span>{capture.weight}</li>
+                    <span className="text-bold h-margin-right--tiny">Numéro de bague</span>{captures[key].ring_number}</li>
                   <li className="list-data__element">
-                    <span className="text-bold h-margin-right--tiny">Longueur alaire</span>{capture.wings_length}</li>
+                    <span className="text-bold h-margin-right--tiny">Poids</span>{captures[key].weight}</li>
+                  <li className="list-data__element">
+                    <span className="text-bold h-margin-right--tiny">Longueur alaire</span>{captures[key].wings_length}</li>
+                  <li className="list-data__element">
+                    <NavLink className="btn btn-primary h-margin-top--tiny h-margin-bottom--small" to={'/mescaptures/'+ key} key={key}>Editer</NavLink></li>
                 </ul>
               </div>
             )
           }
         </React.Fragment>
       )} else {
-        return <p>No data yet</p>
+        return <p>Vous n’avez encore aucune capture</p>
       }
     }
 
   render () {
     return (
       <React.Fragment>
-        <h1>Les captures</h1>
+        <h1>Mes captures</h1>
         {this.renderCaptures()}
       </React.Fragment>
     )
