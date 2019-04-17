@@ -9,6 +9,7 @@ import Home from './pages/Home'
 import Encyclopedia from './pages/Encyclopedia'
 import SingleBird from './pages/SingleBird'
 import Captures from './pages/Captures'
+import EditCapture from './pages/EditCapture'
 import Users from './pages/Users'
 import RingingSites from './pages/RingingSites'
 import AppHeader from './components/Header'
@@ -62,6 +63,7 @@ class App extends Component {
                     <Route exact path="/encyclopedie" component={Encyclopedia}/>
                     <Route path='/encyclopedie/:birdId' component={SingleBird} />
                     <Route exact path="/mescaptures" component={Captures}/>
+                    <Route path='/mescaptures/:captureId' component={EditCapture}/>
                     <Route path="/utilisateurs" component={Users}/>
                     <Redirect to="/"/>
                   </Switch>
