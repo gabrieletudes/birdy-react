@@ -18,6 +18,7 @@ class SingleCapture extends Component {
       weight: '',
       wings_length: ''
     },
+    captureId: null,
     errors:{}
   }
 
@@ -50,6 +51,7 @@ class SingleCapture extends Component {
         }
       })
       this.setState(prevState => ({
+        captureId,
         capture: {
             ...prevState.capture,
             key: singlecapture.key,
@@ -109,6 +111,21 @@ class SingleCapture extends Component {
     capture[input.name] = input.value;
     this.setState({capture, errors});
   }
+  // Handle update of form
+  handleUpdate = e => {
+    e.preventDefault();
+    // The data for the update
+    const {age, fat, gender, latin_name, reprise, ring_number, session_id, uid, weight, wings_length} = this.state.capture;
+    // The enrie that we want to update
+    let entrie = 'single_captures/' + this.state.captureId
+    // The path to the entrie
+    const updateref = firebase.database().ref(entrie);
+
+    //Action to update the entrie
+    updateref.update({
+      age, fat, gender, latin_name, reprise, ring_number, session_id, uid, weight, wings_length
+    })
+  };
 
   renderCapture() {
     const {capture, errors} = this.state;
@@ -119,7 +136,8 @@ class SingleCapture extends Component {
         submitNewCaptureClasses += this.validate() ? ' btn-primary--disabled' : '';
     if (capture !== null) {
       return (
-        <form onSubmit={this.handleSubmit} action="" className="login-form form h-margin-top--tiny">
+
+        <form onSubmit={this.handleUpdate} action="" className="login-form form h-margin-top--tiny">
           <Input type="text"
             name="latin_name"
             onChange={this.handleAdd}
