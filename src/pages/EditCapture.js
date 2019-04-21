@@ -70,7 +70,7 @@ class SingleCapture extends Component {
     fat: Joi.number().less(999999).positive().required().label('Adiposité'),
     gender: Joi.any().valid(['M', 'F']).required().label('Sexe de l’oiseau'),
     latin_name: Joi.string().trim().required().label('Nom latin'),
-    reprise: Joi.any().valid(['Oui', 'Non']).required().label('La reprise'),
+    reprise: Joi.boolean().truthy('Oui').falsy('Non').required().label('La reprise'),
     ring_number: Joi.string().max(20).trim().required().label('Le numéro de bague'),
     session_id: Joi.string().trim().alphanum().required(),
     uid: Joi.string().alphanum().required(),
