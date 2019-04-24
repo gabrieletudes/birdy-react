@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import firebase from 'firebase'
 import Joi from 'joi-browser';
 import Input from '../components/input';
+import MessagePop from '../components/MessagePop';
 import {Link} from 'react-router-dom';
 
 class SingleCapture extends Component {
@@ -19,7 +20,11 @@ class SingleCapture extends Component {
       wings_length: ''
     },
     captureId: null,
-    errors:{}
+    errors:{},
+    themessage: {
+      show: false,
+      text: ''
+    }
   }
 
   componentDidMount(){
@@ -124,19 +129,35 @@ class SingleCapture extends Component {
     //Action to update the entrie
     updateref.update({
       age, fat, gender, latin_name, reprise, ring_number, session_id, uid, weight, wings_length
+    }).then(() => {
+      this.setState({
+        themessage:{
+          show: true,
+          text: 'La donnée a était mise à jour, dans 5 seconds, vous allez être rédigé vers la page de vos captures.'
+        }
+      });
+      setTimeout(() => {
+        this.setState({
+          themessage:{
+            show: false
+          }
+        })
+        // programmatically redirects to mescaptures
+        this.props.history.push('/mescaptures');
+      }, 5000)
     })
   };
 
   renderCapture() {
-    const {capture, errors} = this.state;
-    // const keys = Object.keys(capture);
+    const {capture, errors, themessage} = this.state;
     const {age, fat, gender, latin_name, reprise, ring_number, weight, wings_length} = this.state.capture;
    //Classes for button submitNewCapture
     let submitNewCaptureClasses = 'btn btn-primary h-margin-top--tiny h-margin-bottom--small'
         submitNewCaptureClasses += this.validate() ? ' btn-primary--disabled' : '';
     if (capture !== null) {
       return (
-
+        <React.Fragment>
+        {themessage.show && <MessagePop message={themessage.text} />}
         <form onSubmit={this.handleUpdate} action="" className="login-form form h-margin-top--tiny">
           <Input type="text"
             name="latin_name"
@@ -259,6 +280,7 @@ class SingleCapture extends Component {
         <button disabled={this.validate()} type="submit" className={submitNewCaptureClasses}>Enregistrer les modifications</button>
         <Link className="btn btn-secondary--outlined" to="/mescaptures">Annuler l'edition</Link>
         </form>
+        </React.Fragment>
       )} else {
         return <p>No data yet</p>
       }
