@@ -195,6 +195,7 @@ class Home extends Component {
            <button disabled={errors.method} type="submit" className={startCaptureSessionClasses}>
                Commencer la capture
              </button>
+             <Link className="btn btn-secondary--outlined" to="/mescaptures">Mes captures</Link>
            </form>
         </React.Fragment>
       )
