@@ -8,19 +8,19 @@ self.__precacheManifest = [
     "url": "/birdy-react/static/js/runtime~main.a129ad9c.js"
   },
   {
-    "revision": "14ea374987fdb7c1dc24",
-    "url": "/birdy-react/static/js/main.14ea3749.chunk.js"
+    "revision": "6a655558af35fdcb5cc3",
+    "url": "/birdy-react/static/js/main.6a655558.chunk.js"
   },
   {
     "revision": "4b9f140571faf9c2eced",
     "url": "/birdy-react/static/js/1.4b9f1405.chunk.js"
   },
   {
-    "revision": "14ea374987fdb7c1dc24",
+    "revision": "6a655558af35fdcb5cc3",
     "url": "/birdy-react/static/css/main.38afeb09.chunk.css"
   },
   {
-    "revision": "f4e77da4979336bb7c7f2fd8c51dcb3b",
+    "revision": "079f0ee1423fc92a82eb0300a96e5a84",
     "url": "/birdy-react/index.html"
   }
 ];
