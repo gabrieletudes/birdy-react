@@ -1,7 +1,7 @@
 {
   "main.css": "/birdy-react/static/css/main.38afeb09.chunk.css",
-  "main.js": "/birdy-react/static/js/main.6a655558.chunk.js",
-  "main.js.map": "/birdy-react/static/js/main.6a655558.chunk.js.map",
+  "main.js": "/birdy-react/static/js/main.a9bf74f7.chunk.js",
+  "main.js.map": "/birdy-react/static/js/main.a9bf74f7.chunk.js.map",
   "static/js/1.4b9f1405.chunk.js": "/birdy-react/static/js/1.4b9f1405.chunk.js",
   "static/js/1.4b9f1405.chunk.js.map": "/birdy-react/static/js/1.4b9f1405.chunk.js.map",
   "runtime~main.js": "/birdy-react/static/js/runtime~main.a129ad9c.js",
@@ -9,6 +9,6 @@
   "static/media/logo-birdy-text.svg": "/birdy-react/static/media/logo-birdy-text.2596802d.svg",
   "static/css/main.38afeb09.chunk.css.map": "/birdy-react/static/css/main.38afeb09.chunk.css.map",
   "index.html": "/birdy-react/index.html",
-  "precache-manifest.8ad657955cc73d039f6d174a2b10ce33.js": "/birdy-react/precache-manifest.8ad657955cc73d039f6d174a2b10ce33.js",
+  "precache-manifest.1de4745448aefedce6281b01d5f06023.js": "/birdy-react/precache-manifest.1de4745448aefedce6281b01d5f06023.js",
   "service-worker.js": "/birdy-react/service-worker.js"
 }

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/birdy-react/precache-manifest.8ad657955cc73d039f6d174a2b10ce33.js"
+  "/birdy-react/precache-manifest.1de4745448aefedce6281b01d5f06023.js"
 );
 
 workbox.clientsClaim();
