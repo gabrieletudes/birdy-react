@@ -49,6 +49,9 @@ input {
 }
 
 /*End color helpers*/
+.logo {
+  width: auto;
+}
 
 .text-bold {
   font-weight: bold;
