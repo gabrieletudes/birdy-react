@@ -157,6 +157,7 @@ input {
 }
 
 .label__text {
+  color: #385C76;
   display: inline-block;
   position: absolute;
   top: 1.3rem;
@@ -166,11 +167,20 @@ input {
   transition: transform .2s ease-in-out, background-color .2s ease-in-out, font-size .2s ease-in-out;
 }
 
+.label__radios {
+  transform: translateY(-135%);
+  position: absolute;
+  top: 1.3px;
+  margin: 12px 0;
+  background-color: white;
+  color: #385C76;
+  font-size: 1.4rem;
+}
+
 .label__input:focus ~ .label__text,
 .label__input:valid ~ .label__text {
-  color: #385C76;
   background-color: white;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   padding: 0 5px;
   transform: translateY(-135%);
 }
@@ -185,6 +195,39 @@ input {
   padding-right: 2.6rem;
 }
 
+.label-radio {
+  display: flex;
+  align-items: center;
+}
+
+.radio-group {
+  display: flex;
+}
+
+.label-radio__input:checked + .label-radio__decoration::before {
+  transform: translate3d(0,0,0);
+}
+
+.label-radio__decoration {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  width: 2rem;
+  height: 2rem;
+  margin: 0.8rem 0.8rem 0.8rem 0;
+  border: 2px solid #385C76;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.label-radio__decoration::before {
+  content: '';
+  position: absolute;
+  width: 2rem;
+  height: 100%;
+  background: #385C76;
+  transform: translate3d(0,100%,0);
+  transition: transform 0.3s ease-in-out;
 }
 
 /*button styles*/
