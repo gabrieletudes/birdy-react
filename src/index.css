@@ -387,6 +387,7 @@ input {
 }
 
 .list-data__element {
+  display: flex;
   list-style: none;
   margin-right: .8rem;
   min-width: 10rem;
