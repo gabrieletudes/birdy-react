@@ -53,9 +53,16 @@ input {
   width: auto;
 }
 
+/*Text helpers*/
+.text--small {
+  font-size: 1.6rem;
+}
+
 .text-bold {
   font-weight: bold;
 }
+
+/*End text helpers*/
 
 .header {
   position: fixed;
