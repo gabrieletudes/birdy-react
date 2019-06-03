@@ -105,6 +105,8 @@ input {
   padding-left: 2.6rem;
 }
 
+.label--error{
+  color: #B00020;
 }
 
 .label {
@@ -126,8 +128,19 @@ input {
   outline: none;
   transition: border-color .3s ease-in-out;
 }
+
 .label__input:focus {
   border: 1px solid #385C76;
+}
+
+.label__input--error,
+.label__input--error:focus {
+  border-color: #B00020;
+}
+
+.label__input--error:focus ~ .label__text,
+.label__text--error {
+  color: #B00020 !important;
 }
 
 .label__text {
@@ -150,11 +163,15 @@ input {
 }
 
 .label__error {
-  color: red;
-  font-size: 1.2rem;
+  color: #B00020;
+  font-size: 1.4rem;
   display: inline-flex;
-  margin-left: 2.3rem;
-  margin-top: .4rem;
+  margin-bottom: 2.4rem;
+  margin-top: -2rem;
+  padding-left: 2.6rem;
+  padding-right: 2.6rem;
+}
+
 }
 
 /*button styles*/
@@ -347,7 +364,6 @@ img {
   object-fit: cover;
   width: 100%;
 }
-
 
 /*Map*/
 .birdy-map{
