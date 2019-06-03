@@ -221,6 +221,10 @@ input {
   margin-right: .8rem;
 }
 
+.h-margin-right--small {
+  margin-right: 1.6rem;
+}
+
 .h-margin--none {
   margin-right: 0;
   margin-bottom: 0;
