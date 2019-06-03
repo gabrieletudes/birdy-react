@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import firebase from 'firebase'
+import Loading from '../components/Loading'
 import MarkerClusterer from '@google/markerclustererplus'
 
 class Zones extends Component {
@@ -10,7 +11,8 @@ class Zones extends Component {
       lng: 6.52,
     },
     zoom: 15,
-    capture_sessions: []
+    capture_sessions: [],
+    loading: true,
   }
 
   componentDidMount(){
@@ -83,9 +85,14 @@ class Zones extends Component {
         // add the capture location to allcaptures array
         allcaptures[capture.key].location = captureloc.location
         // Affect the value to the state
-        this.setState({capture_sessions: allcaptures}, this.renderMap())
-      })
+      }).then(
+        this.setState({capture_sessions: allcaptures})
+      )
     })
+    setTimeout(() => {
+      this.setState({loading: false})
+      this.renderMap()
+    }, 1000)
   }
 
   initMap = () => {
@@ -114,9 +121,17 @@ class Zones extends Component {
   }
 
   render() {
-    return (
-      <div className="birdy-map" id="map"></div>
-    )
+    const {loading} = this.state
+
+    if (loading) {
+      return (
+        <Loading />
+      )
+    } else {
+      return (
+        <div className="birdy-map" id="map"></div>
+      )
+    }
   }
 }
 
