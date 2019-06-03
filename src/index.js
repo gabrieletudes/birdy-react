@@ -4,8 +4,8 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faDove, faFeatherAlt, faUsers, faMap, faSignOutAlt, faHandHolding} from '@fortawesome/free-solid-svg-icons'
-library.add(faDove, faFeatherAlt, faUsers, faMap, faSignOutAlt, faHandHolding)
+import { faDove, faFeatherAlt, faUsers, faMap, faSignOutAlt, faHandHolding, faTimes} from '@fortawesome/free-solid-svg-icons'
+library.add(faDove, faFeatherAlt, faUsers, faMap, faSignOutAlt, faHandHolding, faTimes)
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
