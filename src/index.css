@@ -106,6 +106,9 @@ input {
 
 .form-group {
   margin-bottom: 2.4rem;
+  position: relative;
+}
+
 .form-group--radios {
   border: 1px solid rgba(0,0,0,.24);
   border-radius: 1rem;
