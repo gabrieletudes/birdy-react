@@ -247,6 +247,11 @@ input {
   color: #385C76;
 }
 
+.btn-primary--disabled {
+  background-color: #f3e4d2;
+  color: #5e686f;
+}
+
 .btn-secondary--outlined {
   color: #385C76;
   border: 1px solid #385C76;
