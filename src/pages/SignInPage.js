@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import firebase from 'firebase'
 import { Link } from 'react-router-dom'
 import Input from '../components/input'
+import MessagePop from '../components/MessagePop'
 import BirdyLogo from '../logo-birdy-text.svg'
 
 class SignInPage extends Component {
@@ -10,18 +11,28 @@ class SignInPage extends Component {
       useremail: '',
       password: ''
     },
-    errors: {
-      username: '',
-      password: ''
+    message:{
+      text: null,
+      type: null
     }
   }
 
   handleSignin = e => {
     e.preventDefault();
     const {useremail, password} = this.state.account
+
+    const message = {...this.state.message}
+
     firebase.auth().signInWithEmailAndPassword(useremail, password).then((u) => {
+      message['text'] = 'welcome user';
+      message['type'] = 'success'
+      this.setState(
+        {message}
+      )
     }).catch((error) => {
-        console.log(error);
+      message['text'] = error.message;
+      message['type'] = 'error'
+      this.setState({message})
     });
   }
 
@@ -32,13 +43,14 @@ class SignInPage extends Component {
   }
 
   render () {
-    const {account} = this.state
+    const {account, message} = this.state
 
     return (
       <div className="login-wrapper">
         <div className="big-logo-wrapper">
-          <img src={BirdyLogo} alt="Birdy Logo" width="132" className="round-image__element"/>
+          <img src={BirdyLogo} alt="Birdy Logo" width="auto" className="round-image__element logo"/>
         </div>
+        {message.text && <MessagePop message={message.text} type={message.type} />}
         <form onSubmit={this.handleSignin} action="" className="login-form form">
           <Input  type="text"
             name="useremail"
